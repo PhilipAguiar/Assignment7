@@ -14,7 +14,7 @@ import javax.swing.*;
 
 public class FacePamphlet extends ConsoleProgram implements FacePamphletConstants {
 
-	private JLabel name = new JLabel("");
+	private JLabel name = new JLabel("";
 	private JTextField nameField;
 	private JButton add;
 	private JButton delete;
@@ -86,9 +86,10 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	 */
 	public void actionPerformed(ActionEvent e) {
 
-		if(nameField.getText()!= ""){
+		
 		
 		if (e.getSource() == add) {
+			if(!checkIfBlank(nameField.getText()))
 			println(nameField.getText());
 		}
 		if (e.getSource() == delete) {
@@ -119,4 +120,15 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		}
 	}
 
+	private boolean checkIfBlank(String text){
+		
+		if(text == ""){
+			return true;
+			
+		}else return false;
+		
+		
+		
+		
+	}
 }
