@@ -93,37 +93,46 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 			if(nameField.getText()== ""){
 			println(nameField.getText());}
 		}
+		
 		if (e.getSource() == delete) {
 			if(nameField.getText()== ""){
 			println(nameField.getText()+" was deleted.");}
 		}
+		
 		if (e.getSource() == lookUp) {
 			if(nameField.getText()== ""){
 			println("Looking up: "+nameField.getText());}
 		}
 		
-		
 		if (e.getSource() == statusTextField) {
 			if(statusTextField.getText()== ""){		
 			println(nameField.getText() + " is currently " + statusTextField.getText());}
 		}
+		
 		if (e.getSource() == statusButton) {
 			if(statusTextField.getText()== ""){
-			println(nameField.getText() + " is currently " + statusTextField.getText());
+			println(nameField.getText() + " is currently " + statusTextField.getText());}
 		}
+		
 		if (e.getSource() == pictureTextField) {
 			if(pictureTextField.getText()== ""){
 			println(pictureTextField.getText() + " Picture added.");}
 		}
-		if (e.getSource() == pictureButton) {
-			println(pictureTextField.getText() + " Picture added.");
-		}
-		if (e.getSource() == addFriendTextField) {
-			println(addFriendTextField+ "was added as a friend!");
-		}
-		if (e.getSource() == addFriendButton) {
-			println(addFriendTextField.getText()+ " was added as a friend!");
 		
+		if (e.getSource() == pictureButton) {
+			if(pictureTextField.getText()== ""){
+			println(pictureTextField.getText() + " Picture added.");}
+		}
+		
+		if (e.getSource() == addFriendTextField) {
+			if(addFriendTextField.getText()== ""){
+			println(addFriendTextField+ "was added as a friend!");}
+		}
+		
+		if (e.getSource() == addFriendButton) {
+			if(addFriendTextField.getText()== ""){
+			println(addFriendTextField.getText()+ " was added as a friend!");}
+		}
 	}
 
 	private boolean checkIfBlank(String text){
