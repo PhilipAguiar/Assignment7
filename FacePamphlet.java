@@ -114,7 +114,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 			println(addFriendTextField+ "was added as a friend!");
 		}
 		if (e.getSource() == addFriendButton) {
-			println(addFriendTextField.getText()+ "was added as a friend!");
+			println(addFriendTextField.getText()+ " was added as a friend!");
 		}
 	}
 
