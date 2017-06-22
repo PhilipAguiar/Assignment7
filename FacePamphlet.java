@@ -104,14 +104,16 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		
 		if (e.getSource() == statusTextField) {
-			if(!checkIfBlank(statusTextField.getText())== false){			
+			if(statusTextField.getText()== ""){		
 			println(nameField.getText() + " is currently " + statusTextField.getText());}
 		}
 		if (e.getSource() == statusButton) {
+			if(statusTextField.getText()== ""){
 			println(nameField.getText() + " is currently " + statusTextField.getText());
 		}
 		if (e.getSource() == pictureTextField) {
-			println(pictureTextField.getText() + " Picture added.");
+			if(pictureTextField.getText()== ""){
+			println(pictureTextField.getText() + " Picture added.");}
 		}
 		if (e.getSource() == pictureButton) {
 			println(pictureTextField.getText() + " Picture added.");
