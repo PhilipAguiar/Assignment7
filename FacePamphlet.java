@@ -37,6 +37,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 
 		nameField = new JTextField(TEXT_FIELD_SIZE);
 		add(nameField, NORTH);
+		nameField.addActionListener(this);
 
 		add = new JButton("Add");
 		add(add, NORTH);
@@ -49,6 +50,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 
 		statusTextField = new JTextField(TEXT_FIELD_SIZE);
 		add(statusTextField, WEST);
+		statusTextField.addActionListener(this);
 
 		statusButton = new JButton("Change Status");
 		add(statusButton, WEST);
@@ -58,6 +60,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 
 		pictureTextField = new JTextField(TEXT_FIELD_SIZE);
 		add(pictureTextField, WEST);
+		pictureTextField.addActionListener(this);
 
 		pictureButton = new JButton("Change Picture");
 		add(pictureButton, WEST);
@@ -67,6 +70,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 
 		addFriendTextField = new JTextField(TEXT_FIELD_SIZE);
 		add(addFriendTextField, WEST);
+		addFriendTextField.addActionListener(this);
 
 		addFriendButton = new JButton("Add Friend");
 		add(addFriendButton, WEST);
@@ -110,7 +114,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 			println(addFriendTextField+ "was added as a friend!");
 		}
 		if (e.getSource() == addFriendButton) {
-			println(addFriendTextField+ "was added as a friend!");
+			println(addFriendTextField.getText()+ "was added as a friend!");
 		}
 	}
 
