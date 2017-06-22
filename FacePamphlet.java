@@ -123,7 +123,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		}
 		if (e.getSource() == addFriendButton) {
 			println(addFriendTextField.getText()+ " was added as a friend!");
-		}
+		
 	}
 
 	private boolean checkIfBlank(String text){
