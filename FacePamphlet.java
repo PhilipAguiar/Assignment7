@@ -14,7 +14,7 @@ import javax.swing.*;
 
 public class FacePamphlet extends ConsoleProgram implements FacePamphletConstants {
 
-	private JLabel name = new JLabel("";
+	private JLabel name = new JLabel("");
 	private JTextField nameField;
 	private JButton add;
 	private JButton delete;
