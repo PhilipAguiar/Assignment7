@@ -85,7 +85,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	 */
 	public void actionPerformed(ActionEvent e) {
 
-
+		if(nameField.getText()!= ""){
+		
 		if (e.getSource() == add) {
 			println(nameField.getText());
 		}
@@ -95,6 +96,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		if (e.getSource() == lookUp) {
 			println("Looking up: "+nameField.getText());
 		}
+		}
+		
 		if (e.getSource() == statusTextField) {
 			println(nameField.getText() + " is currently " + statusTextField.getText());
 		}
