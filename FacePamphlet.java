@@ -95,16 +95,16 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 			println("Looking up: "+nameField.getText());
 		}
 		if (e.getSource() == statusTextField) {
-			println(nameField.getText() + " is currentyly " + statusTextField.getText());
+			println(nameField.getText() + " is currently " + statusTextField.getText());
 		}
 		if (e.getSource() == statusButton) {
-			println(nameField.getText() + " is currentyly " + statusTextField.getText());
+			println(nameField.getText() + " is currently " + statusTextField.getText());
 		}
 		if (e.getSource() == pictureTextField) {
 			println(pictureTextField.getText() + " Picture added.");
 		}
 		if (e.getSource() == pictureButton) {
-			println(nameField.getText() + " is currentyly " + statusTextField.getText());
+			println(pictureTextField.getText() + " Picture added.");
 		}
 		if (e.getSource() == addFriendTextField) {
 			println(addFriendTextField+ "was added as a friend!");
