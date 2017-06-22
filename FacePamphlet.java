@@ -31,10 +31,10 @@ public class FacePamphlet extends Program
 		add(add,NORTH);
 		
 		JButton delete = new JButton("Delete");
-		add(add,NORTH);
+		add(delete,NORTH);
 		
 		JButton lookUp = new JButton("Lookup");
-		add(add,NORTH);
+		add(lookUp,NORTH);
     }
     
   
