@@ -20,7 +20,8 @@ public class FacePamphlet extends Program
 	 * initialization that needs to be performed.
 	 */
 	public void init() {
-		// You fill this in
+		
+		
     }
     
   
