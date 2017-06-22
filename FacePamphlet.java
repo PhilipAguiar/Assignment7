@@ -128,7 +128,9 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		if(text == ""){
 			return true;
 			
-		}else return false;
+		}else {
+			return false;
+		}
 		
 		
 		
