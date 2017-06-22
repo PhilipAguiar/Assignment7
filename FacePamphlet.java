@@ -55,10 +55,10 @@ public class FacePamphlet extends Program
 		add(blank2,WEST);
 		
 		JTextField addFriendTextField = new JTextField(TEXT_FIELD_SIZE);
-		add(pictureTextField,WEST);
+		add(addFriendTextField,WEST);
 		
 		JButton addFriendButton = new JButton("Add Friend");
-		add(pictureButton,WEST);
+		add(addFriendButton,WEST);
 		
 		
     }
