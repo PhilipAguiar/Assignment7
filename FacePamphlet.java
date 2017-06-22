@@ -37,7 +37,6 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 
 		nameField = new JTextField(TEXT_FIELD_SIZE);
 		add(nameField, NORTH);
-		nameField.addActionListener(this);
 
 		add = new JButton("Add");
 		add(add, NORTH);
@@ -86,9 +85,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	 */
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource() == nameField) {
-			println(nameField.getText());
-		}
+
 		if (e.getSource() == add) {
 			println(nameField.getText());
 		}
