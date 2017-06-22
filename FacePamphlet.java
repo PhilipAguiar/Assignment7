@@ -90,15 +90,15 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		
 		if (e.getSource() == add) {
-			if(!checkIfBlank(nameField.getText())){
+			if(checkIfBlank(nameField.getText())== false){
 			println(nameField.getText());}
 		}
 		if (e.getSource() == delete) {
-			if(!checkIfBlank(nameField.getText())){
+			if(!checkIfBlank(nameField.getText())== false){
 			println(nameField.getText()+" was deleted.");}
 		}
 		if (e.getSource() == lookUp) {
-			if(!checkIfBlank(nameField.getText())){
+			if(!checkIfBlank(nameField.getText())== false){
 			println("Looking up: "+nameField.getText());}
 		}
 		
