@@ -146,7 +146,7 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					canvas.showMessage(name + " is currently " + status);
 				} else {
 					canvas.showMessage("There's no profile to change the status of");
-					currentProfile=null;
+					
 				}
 			}
 		}
