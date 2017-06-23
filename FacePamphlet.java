@@ -120,6 +120,7 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					canvas.showMessage(name + " was removed from the database!");
 					db.deleteProfile(name);
 					currentProfile = null;
+					canvas.displayProfile(currentProfile);
 					
 				} else
 					canvas.showMessage("This name is not in the database!");
