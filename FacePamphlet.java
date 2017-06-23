@@ -12,7 +12,7 @@ import acm.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class FacePamphlet extends ConsoleProgram implements FacePamphletConstants {
+public class FacePamphlet extends Program implements FacePamphletConstants {
 
 	private JTextField nameField;
 	private JButton add;
@@ -107,9 +107,9 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 					FacePamphletProfile profile = new FacePamphletProfile(name);
 					db.addProfile(profile);
 					currentProfile = profile;
-					println("Add new profile: " + profile.toString());
+					canvas.showMessage("Add new profile: " + profile.toString());
 				} else
-					println("This name is already in the database!");
+					canvas.showMessage("This name is already in the database!");
 
 			}
 		}
