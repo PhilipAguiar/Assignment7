@@ -146,5 +146,5 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		
 		
-	
+	}
 }
