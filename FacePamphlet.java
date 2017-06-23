@@ -120,7 +120,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		if (e.getSource() == lookUp) {
 			if (!name.isEmpty()) {
 				if (db.containsProfile(name)) {
-					println("Looking up " + name + "'s profile");
+					currentProfile=db.getProfile(name);
+					println(currentProfile.toString());
 				} else
 					println("This name is not in the database!");
 			}
