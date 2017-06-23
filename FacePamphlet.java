@@ -222,7 +222,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				} else
 					println("No Profile to add friend too!");
 			}
-		}
+		
 		if (e.getSource() == addFriendButton) {
 			if (!addFriendTextField.getText().isEmpty()) {
 				if (db.containsProfile(currentName)) {
@@ -232,13 +232,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 								if (currentProfile.getFriends().next() == friendName) {
 									println("You are already friends with this person!");
 									break;
-								} else {
-									currentProfile.addFriend(friendName);
-									db.getProfile(friendName).addFriend(currentName);
-									db.addProfile(currentProfile);
-									println(friendName + " is now your friend!");
-									break;
-								}
+								} 
 							}
 
 						}else{
