@@ -92,6 +92,16 @@ public class FacePamphletCanvas extends GCanvas
 			add(noImage, labelWidth, labelHeight);
 		}
 	}
+	private void addStatus(String status) {
+		GLabel Status = new GLabel(status);
+		Status.setFont(PROFILE_STATUS_FONT);
+		double x = LEFT_MARGIN;
+		double y = TOP_MARGIN + nameHeight + IMAGE_MARGIN + IMAGE_HEIGHT + STATUS_MARGIN + Status.getHeight();
+		if(getElementAt(x, y) != null) {
+			remove(getElementAt(x, y));
+		}
+		add(Status, x, y);
+	}
 	
 	private void addFriends(Iterator<String>friends) {
 		GLabel Friends = new GLabel("Friends:");
