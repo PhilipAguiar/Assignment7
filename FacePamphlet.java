@@ -29,6 +29,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	private FacePamphletDatabase db = new FacePamphletDatabase();
 	private FacePamphletProfile profile;
 	private FacePamphletProfile currentProfile;
+	private String currentName = "";
 
 	/**
 	 * This method has the responsibility for initializing the interactors in
@@ -91,7 +92,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	public void actionPerformed(ActionEvent e) {
 
 		String name = nameField.getText();
-		String currentName = currentProfile.getName();
+	
 		String status = statusTextField.getText();
 		String pictureText = pictureTextField.getText();
 		String friendName = addFriendTextField.getText();
@@ -102,6 +103,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				profile= new FacePamphletProfile(name);
 				db.addProfile(profile);
 				currentProfile= profile;
+				currentName= currentProfile.getName();
 				println("Add new profile: "+ profile.toString());
 			}else println("This name is already in the database!");
 			
@@ -128,6 +130,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				currentProfile.setStatus(status);
 				db.addProfile(currentProfile);
 			println(currentName + " is currently " + status);}
+				else {println("There's no profile to add this status too");}
 		}
 			}
 		
@@ -136,7 +139,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				if(db.containsProfile(name)){
 				currentProfile.setStatus(status);
 				db.addProfile(currentProfile);
-			println(name + " is currently " + status);}
+			println(currentName + " is currently " + status);}
+				else {println("There's no profile to add this status too");}
 		}
 			}
 		
