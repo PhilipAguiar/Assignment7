@@ -144,7 +144,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				currentProfile.setImage(this.image);
 				db.addProfile(currentProfile);
 			println(pictureText + " Picture added.");}
-				else {println("There's no profile to add this picture too");}
+				else {println("There's no profile to add this picture too");
+				}
 			}
 			
 		}
@@ -171,7 +172,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		if (e.getSource() == addFriendButton) {
 			if(db.containsProfile(friendName)){
 				println(friendName+ " is now your friend!");
-			}else println("You're already friends with this person!");}
+			}else {println("You're already friends with this person!");}
 		}
 	}
 
