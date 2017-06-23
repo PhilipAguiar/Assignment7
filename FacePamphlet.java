@@ -88,12 +88,12 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	 */
 	public void actionPerformed(ActionEvent e) {
 
-		
+		String name = nameField.getText();
 		
 		if (e.getSource() == add) {
-			if(!nameField.getText().isEmpty()){
-			if(!db.containsProfile(nameField.getText())){
-				profile= new FacePamphletProfile(nameField.getText());
+			if(!name.isEmpty()){
+			if(!db.containsProfile(name)){
+				profile= new FacePamphletProfile(name);
 				db.addProfile(profile);
 				println("Add new profile: "+ profile.toString());
 			}else println("This name is already in the database!");
@@ -101,25 +101,28 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		}
 		
 		if (e.getSource() == delete) {
-			if(!nameField.getText().isEmpty()){
-				if(db.containsProfile(nameField.getText())){
-					db.deleteProfile(nameField.getText());
+			if(!name.isEmpty()){
+				if(db.containsProfile(name)){
+					db.deleteProfile(name);
+					println(name+ "was removed from the database!");
 				}else println("This name is not in the database!");}
 		}
 		
 		if (e.getSource() == lookUp) {
-			if(!nameField.getText().isEmpty()){
-			println("Looking up: "+nameField.getText());}
+			if(!name.isEmpty()){
+				if(db.containsProfile(name)){
+				println(name);
+				}else println("This name is already in the database!");}
 		}
 		
 		if (e.getSource() == statusTextField) {
 			if(!statusTextField.getText().isEmpty()){		
-			println(nameField.getText() + " is currently " + statusTextField.getText());}
+			println(name + " is currently " + statusTextField.getText());}
 		}
 		
 		if (e.getSource() == statusButton) {
 			if(!statusTextField.getText().isEmpty()){
-			println(nameField.getText() + " is currently " + statusTextField.getText());}
+			println(name + " is currently " + statusTextField.getText());}
 		}
 		
 		if (e.getSource() == pictureTextField) {
