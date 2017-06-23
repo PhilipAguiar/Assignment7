@@ -12,7 +12,7 @@ import acm.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class FacePamphlet extends Program implements FacePamphletConstants {
+public class FacePamphlet extends ConsoleProgram implements FacePamphletConstants {
 
 	private JTextField nameField;
 	private JButton add;
@@ -37,7 +37,9 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 	 */
 	public void init() {
 		
+		canvas = new FacePamphletCanvas();
 		
+
 
 		JLabel name = new JLabel("Name:");
 		add(name, NORTH);
@@ -82,9 +84,8 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 		add(addFriendButton, WEST);
 
 		addActionListeners();
-
-		canvas = new FacePamphletCanvas();
 		add(canvas);
+
 	}
 
 	/**
@@ -106,11 +107,9 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					FacePamphletProfile profile = new FacePamphletProfile(name);
 					db.addProfile(profile);
 					currentProfile = profile;
-					canvas.displayProfile(currentProfile);
-	    			canvas.showMessage("New profile created");
+					println("Add new profile: " + profile.toString());
 				} else
-				canvas.displayProfile(currentProfile);
-    			canvas.showMessage("A profile with name " + name + " already exists.");
+					println("This name is already in the database!");
 
 			}
 		}
@@ -118,12 +117,12 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 		if (e.getSource() == delete) {
 			if (!name.isEmpty()) {
 				if (db.containsProfile(name)) {
-					canvas.showMessage(name + " was removed from the database!");
+					println(name + " was removed from the database!");
 					db.deleteProfile(name);
 					currentProfile = null;
 					
 				} else
-					canvas.showMessage("This name is not in the database!");
+					println("This name is not in the database!");
 			}
 		}
 
@@ -131,35 +130,29 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 			if (!name.isEmpty()) {
 				if (db.containsProfile(name)) {
 					currentProfile=db.getProfile(name);
-					canvas.displayProfile(currentProfile);
-					canvas.showMessage(currentProfile.toString());
+					println(currentProfile.toString());
 				} else
-					currentProfile= null;
-					canvas.showMessage("This name is not in the database!");
+					println("This name is not in the database!");
 			}
 		}
 
-		if (e.getSource() == statusTextField||e.getSource() == statusButton) {
+		if (e.getSource() == statusTextField|| e.getSource() == statusButton) {
 			if (!status.isEmpty()) {
 				if (db.containsProfile(name)) {
-					currentProfile=db.getProfile(name);
 					currentProfile.setStatus(status);
 					db.addProfile(currentProfile);
 					println(name + " is currently " + status);
-					canvas.displayProfile(currentProfile);
-	    			canvas.showMessage(name + " is currently " + status);
 				} else {
-					canvas.showMessage("There's no profile to change the status of");
+					println("There's no profile to change the status of");
 				}
 			}
 		}
 
 		
 
-		if (e.getSource() == pictureButton|| e.getSource()== pictureTextField) {
+		if (e.getSource() == pictureTextField|| e.getSource() == pictureButton) {
 			if (!pictureText.isEmpty()) {
 				if (db.containsProfile(name)) {
-					currentProfile=db.getProfile(name);
 					GImage image = null;
 					try {
 						image = new GImage(pictureText);
@@ -171,12 +164,16 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					} catch (ErrorException ex) {
 						println("That image cannot be uploaded");
 					}
-					canvas.displayProfile(currentProfile);
+
 				} else {
 					println("There's no profile to upload this picture too");
 				}
 			}
+
 		}
+
+		
+		
 
 		if (e.getSource() == addFriendTextField|| e.getSource() == addFriendButton) {
 			if (!addFriendTextField.getText().isEmpty()) {
@@ -187,22 +184,21 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 							db.getProfile(friendName).addFriend(name);
 							db.addProfile(currentProfile);
 							
-							canvas.showMessage(friendName + " is now your friend!");
+							println(friendName + " is now your friend!");
 							
 						}else{
-							canvas.showMessage(friendName+ " is already your friend!");
+							println(friendName+ " is already your friend!");
 						}
 						
 					}else{
-						canvas.showMessage("That friend isnt in our system :(");}
+						println("That friend isnt in our system :(");}
 					}
 						
 				} else {
-					canvas.showMessage("That profile isn't in our system :(");
+					println("That profile isn't in our system :(");
 
 					} 
 		}
 
 		
-
 }}
