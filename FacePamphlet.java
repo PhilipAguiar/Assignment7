@@ -118,12 +118,12 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 		if (e.getSource() == delete) {
 			if (!name.isEmpty()) {
 				if (db.containsProfile(name)) {
-					println(name + " was removed from the database!");
+					canvas.showMessage(name + " was removed from the database!");
 					db.deleteProfile(name);
 					currentProfile = null;
 					
 				} else
-					println("This name is not in the database!");
+					canvas.showMessage("This name is not in the database!");
 			}
 		}
 
@@ -131,39 +131,35 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 			if (!name.isEmpty()) {
 				if (db.containsProfile(name)) {
 					currentProfile=db.getProfile(name);
-					println(currentProfile.toString());
+					canvas.displayProfile(currentProfile);
+					canvas.showMessage(currentProfile.toString());
 				} else
-					println("This name is not in the database!");
+					currentProfile= null;
+					canvas.showMessage("This name is not in the database!");
 			}
 		}
 
-		if (e.getSource() == statusTextField) {
+		if (e.getSource() == statusTextField||e.getSource() == statusButton) {
 			if (!status.isEmpty()) {
 				if (db.containsProfile(name)) {
+					currentProfile=db.getProfile(name);
 					currentProfile.setStatus(status);
 					db.addProfile(currentProfile);
 					println(name + " is currently " + status);
+					canvas.displayProfile(currentProfile);
+	    			canvas.showMessage(name + " is currently " + status);
 				} else {
-					println("There's no profile to change the status of");
+					canvas.showMessage("There's no profile to change the status of");
 				}
 			}
 		}
 
-		if (e.getSource() == statusButton) {
-			if (!status.isEmpty()) {
-				if (db.containsProfile(name)) {
-					currentProfile.setStatus(status);
-					db.addProfile(currentProfile);
-					println(name + " is currently " + status);
-				} else {
-					println("There's no profile to change the status of");
-				}
-			}
-		}
+		
 
-		if (e.getSource() == pictureTextField) {
+		if (e.getSource() == pictureButton|| e.getSource()== pictureTextField) {
 			if (!pictureText.isEmpty()) {
 				if (db.containsProfile(name)) {
+					currentProfile=db.getProfile(name);
 					GImage image = null;
 					try {
 						image = new GImage(pictureText);
@@ -175,36 +171,14 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					} catch (ErrorException ex) {
 						println("That image cannot be uploaded");
 					}
-
-				} else {
-					println("There's no profile to upload this picture too");
-				}
-			}
-
-		}
-
-		if (e.getSource() == pictureButton) {
-			if (!pictureText.isEmpty()) {
-				if (db.containsProfile(name)) {
-					GImage image = null;
-					try {
-						image = new GImage(pictureText);
-						if (image != null) {
-							currentProfile.setImage(image);
-							db.addProfile(currentProfile);
-							println("Uploading: " + pictureText);
-						}
-					} catch (ErrorException ex) {
-						println("That image cannot be uploaded");
-					}
-
+					canvas.displayProfile(currentProfile);
 				} else {
 					println("There's no profile to upload this picture too");
 				}
 			}
 		}
 
-		if (e.getSource() == addFriendTextField) {
+		if (e.getSource() == addFriendTextField|| e.getSource() == addFriendButton) {
 			if (!addFriendTextField.getText().isEmpty()) {
 				if (db.containsProfile(name)) {
 					if (db.containsProfile(friendName)) {
@@ -229,31 +203,6 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					} 
 		}
 
-		if (e.getSource() == addFriendButton) {
-			if (!addFriendTextField.getText().isEmpty()) {
-				if (db.containsProfile(name)) {
-					if (db.containsProfile(friendName)) {
-						currentProfile = db.getProfile(name);
-						if(currentProfile.addFriend(friendName)){
-							db.getProfile(friendName).addFriend(name); 
-							db.addProfile(currentProfile);
-							db.addProfile(db.getProfile(friendName));
-							println(friendName + " is now your friend!");
-							
-						}else{
-							println(friendName+ " is already your friend!");
-						}
-						
-					}else{
-						println("That friend isn't in our system :(");}
-					}
-						
-				} else {
-					println("That profile isn't in our system :(");
-
-					}
-					
-			
-		}
+		
 
 }}
