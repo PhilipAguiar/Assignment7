@@ -11,9 +11,10 @@ import java.awt.*;
 import java.util.*;
 
 public class FacePamphletCanvas extends GCanvas implements FacePamphletConstants {
-	private double nameHeight = 0;
-	private double lastX = 0;
-	private double lastY = 0;
+	GLabel message;
+	GLabel profileName;
+	GLabel status;
+	GLabel friendsList;
 
 	/**
 	 * Constructor This method takes care of any initialization needed for the
@@ -53,69 +54,58 @@ public class FacePamphletCanvas extends GCanvas implements FacePamphletConstants
 	 * network.
 	 */
 	public void displayProfile(FacePamphletProfile profile) {
-		removeAll();
-		addName(profile.getName());
-		addImage(profile.getImage());
-		addStatus(profile.getStatus());
-		addFriends(profile.getFriends());
-
-	}
-
-	private void addName(String name) {
-		GLabel Name = new GLabel(name);
-		Name.setFont(PROFILE_NAME_FONT);
-		Name.setColor(Color.BLUE);
-		double nameHeight = Name.getHeight();
-		double x = LEFT_MARGIN;
-		double y = TOP_MARGIN + nameHeight;
-		add(Name, x, y);
-		
-		
-		
-	}
-
-	private void addImage(GImage image) {
-		double x = LEFT_MARGIN;
-		double y = TOP_MARGIN + nameHeight + IMAGE_MARGIN; 
-		if(image != null) {
-			image.setBounds(x, y, IMAGE_WIDTH, IMAGE_HEIGHT);
-			add(image);
-		}
-		else {
-			GRect imageRect = new GRect(x, y, IMAGE_WIDTH, IMAGE_HEIGHT);
-			add(imageRect);
-			GLabel noImage = new GLabel("No Image");
-			noImage.setFont(PROFILE_IMAGE_FONT);
-			double labelWidth = x + IMAGE_WIDTH/2 - noImage.getWidth()/2;
-			double labelHeight = y + IMAGE_HEIGHT/2;
-			add(noImage, labelWidth, labelHeight);
-		}
-	}
-	
-	private void addStatus(String status) {
-		GLabel Status = new GLabel(status);
-		Status.setFont(PROFILE_STATUS_FONT);
-		double x = LEFT_MARGIN;
-		double y = TOP_MARGIN + nameHeight + IMAGE_MARGIN + IMAGE_HEIGHT + STATUS_MARGIN + Status.getHeight();
-		if(getElementAt(x, y) != null) {
-			remove(getElementAt(x, y));
-		}
-		add(Status, x, y);
-	}
-
-	private void addFriends(Iterator<String>friends) {
-		GLabel Friends = new GLabel("Friends:");
-		Friends.setFont(PROFILE_FRIEND_LABEL_FONT);
-		double x = getWidth()/2;
-		double y = TOP_MARGIN + nameHeight;
-		add(Friends, x, y);
-		Iterator<String> it = friends;
-		for(int i = 1; it.hasNext(); i++) {
-			GLabel friendName = new GLabel(it.next());
-			friendName.setFont(PROFILE_FRIEND_FONT);
-			double height = y + Friends.getHeight() * i;
-			add(friendName, x, height);
-		}
-	}
-
+		// Clears all of the exisitng items (picture, name, status, system messages), re adds the message label as blank.
+				removeAll();
+				message.setLabel("");
+				add(message);
+				
+				//Displays name
+				profileName = new GLabel(profile.getName(), LEFT_MARGIN, TOP_MARGIN);
+				profileName.setFont(PROFILE_NAME_FONT);
+				profileName.setColor(Color.blue);
+				profileName.move(0, profileName.getAscent() / 2);
+				add(profileName);
+				
+				//Displays picture.  Default picture is the text "No Image" in a rectangle
+				if(profile.getImage() == null){
+					GRect rect = new GRect (LEFT_MARGIN, TOP_MARGIN + IMAGE_MARGIN, IMAGE_WIDTH, IMAGE_HEIGHT);
+					GLabel noImage = new GLabel("No Image", LEFT_MARGIN + rect.getWidth()/2, TOP_MARGIN+IMAGE_MARGIN + rect.getHeight()/2);
+					noImage.setFont(PROFILE_IMAGE_FONT);
+					noImage.move(-noImage.getWidth()/2, noImage.getAscent()/2);
+					add(rect);
+					add(noImage);
+				}else{
+					GImage profilePicture = profile.getImage();
+					profilePicture.setSize(IMAGE_WIDTH, IMAGE_HEIGHT);
+					profilePicture.setLocation(LEFT_MARGIN, TOP_MARGIN + IMAGE_MARGIN);
+					add(profilePicture);
+				}
+				
+				//Displays status
+				if(profile.getStatus().equals("")){
+					status = new GLabel("No current status");
+					status.setFont(PROFILE_STATUS_FONT);
+					add(status, LEFT_MARGIN, TOP_MARGIN + IMAGE_HEIGHT + STATUS_MARGIN + status.getAscent());
+				}else{
+					status = new GLabel(profile.getName() + " is " + profile.getStatus());
+					status.setFont(PROFILE_STATUS_FONT);
+					add(status, LEFT_MARGIN, TOP_MARGIN + IMAGE_HEIGHT + STATUS_MARGIN + status.getAscent());
+				}
+				
+				//Displays friends
+				GLabel friendsLabel = new GLabel("Friends: ", getWidth()/2, TOP_MARGIN+IMAGE_MARGIN);
+				friendsLabel.setFont(PROFILE_FRIEND_LABEL_FONT);
+				add(friendsLabel);
+				String listOfFriends = "";
+				Iterator<String> friends = profile.getFriends();
+				for (int i = 1; friends.hasNext(); i++){
+					friendsList = new GLabel(friends.next());
+					friendsList.setLocation(getWidth()/2, TOP_MARGIN + IMAGE_MARGIN + friendsList.getAscent() * i);
+					add(friendsList);
+						
+					
+				}
+				
+				
+				}
 }
