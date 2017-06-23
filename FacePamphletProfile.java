@@ -131,7 +131,10 @@ public class FacePamphletProfile implements FacePamphletConstants {
 	 * would return the string: "Alice (coding): Don, Chelsea, Bob"
 	 */ 
 	public String toString() {
-		
+		if (status==null){
+			status= "";
+			
+		}
 		String result = (name+" ("+ status+"): ");
 		
 		Iterator<String> it = friendsList.iterator();
