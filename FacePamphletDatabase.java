@@ -10,7 +10,7 @@ import java.util.*;
 
 public class FacePamphletDatabase implements FacePamphletConstants {
 
-	HashMap<String, FacePamphletProfile> profile = new HashMap<String,FacePamphletProfile>();
+	HashMap<String, FacePamphletProfile> profile;
 	
 	/** 
 	 * Constructor
@@ -18,7 +18,7 @@ public class FacePamphletDatabase implements FacePamphletConstants {
 	 * the database.
 	 */
 	public FacePamphletDatabase() {
-		// You fill this in
+		profile = new HashMap<String,FacePamphletProfile>();
 	}
 	
 	
