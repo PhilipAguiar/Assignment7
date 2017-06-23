@@ -36,12 +36,12 @@ public class FacePamphletCanvas extends GCanvas
 		GLabel label = new GLabel(msg);
 		double x= getWidth()/2-msg.length()/2;
 		double y = getHeight() - BOTTOM_MESSAGE_MARGIN;
-		lastX = x;
-		lastY = y;		
+				
 		if(getElementAt(lastX, lastY) != null) {
 			remove(getElementAt(lastX, lastY));
 		}
-		
+		lastX = x;
+		lastY = y;
 		label.setFont(MESSAGE_FONT);
 		add(label,x,y);
 		
