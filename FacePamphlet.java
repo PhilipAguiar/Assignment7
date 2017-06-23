@@ -25,6 +25,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	private JButton pictureButton;
 	private JTextField addFriendTextField;
 	private JButton addFriendButton;
+	private FacePamphletDatabase db = new FacePamphletDatabase();
 
 	/**
 	 * This method has the responsibility for initializing the interactors in
