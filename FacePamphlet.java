@@ -187,18 +187,18 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 							db.getProfile(friendName).addFriend(name);
 							db.addProfile(currentProfile);
 							
-							println(friendName + " is now your friend!");
+							canvas.showMessage(friendName + " is now your friend!");
 							
 						}else{
-							println(friendName+ " is already your friend!");
+							canvas.showMessage(friendName+ " is already your friend!");
 						}
 						
 					}else{
-						println("That friend isnt in our system :(");}
+						canvas.showMessage("That friend isnt in our system :(");}
 					}
 						
 				} else {
-					println("That profile isn't in our system :(");
+					canvas.showMessage("That profile isn't in our system :(");
 
 					} 
 		}
