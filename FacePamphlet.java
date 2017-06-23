@@ -192,7 +192,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 					}else{
 					
 					println(friendName+ " is not in the system");}
-				}else println("You're already friends with this person!");}
+				}else println("This person is not in our Database :(");}
 		}
 		
 		if(!addFriendTextField.getText().isEmpty()){
