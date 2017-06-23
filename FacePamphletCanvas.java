@@ -13,9 +13,9 @@ import java.util.*;
 
 public class FacePamphletCanvas extends GCanvas 
 					implements FacePamphletConstants {
-	double nameHeight ;
-	double lastX ;
-	double lastY ;
+	double nameHeight =0;
+	double lastX =0;
+	double lastY =0;
 	/** 
 	 * Constructor
 	 * This method takes care of any initialization needed for 
