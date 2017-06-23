@@ -35,7 +35,7 @@ public class FacePamphletCanvas extends GCanvas
 	public void showMessage(String msg) {
 		GLabel label = new GLabel(msg);
 				
-		double x = getWidth()/2 - label.getWidth()/2+LEFT_MARGIN;
+		double x = getWidth()/2 - label.getWidth()/2-LEFT_MARGIN;
 		double y = getHeight() - BOTTOM_MESSAGE_MARGIN;
 		if(getElementAt(lastX, lastY) != null) {
 			remove(getElementAt(lastX, lastY));
