@@ -96,7 +96,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				profile= new FacePamphletProfile(nameField.getText());
 				db.addProfile(profile);
 			}
-			println("Add new profile: "+ profile.getName());
+			println("Add new profile: "+ profile.toString());
 			}
 		}
 		
