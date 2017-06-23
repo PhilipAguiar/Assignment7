@@ -13,7 +13,9 @@ import java.util.*;
 
 public class FacePamphletCanvas extends GCanvas 
 					implements FacePamphletConstants {
-	
+	double nameHeight ;
+	double lastX ;
+	double lastY ;
 	/** 
 	 * Constructor
 	 * This method takes care of any initialization needed for 
@@ -31,7 +33,18 @@ public class FacePamphletCanvas extends GCanvas
 	 * passed in.
 	 */
 	public void showMessage(String msg) {
-		// You fill this in
+		GLabel label = new GLabel(msg);
+		double x= getWidth()/2-msg.length()/2;
+		double y = getHeight() - BOTTOM_MESSAGE_MARGIN;
+				
+		if(getElementAt(lastX, lastY) != null) {
+			remove(getElementAt(lastX, lastY));
+		}
+		lastX = x;
+		lastY = y;
+		label.setFont(MESSAGE_FONT);
+		add(label,x,y);
+		
 	}
 	
 	
@@ -45,8 +58,53 @@ public class FacePamphletCanvas extends GCanvas
 	 * the user, and a list of the user's friends in the social network.
 	 */
 	public void displayProfile(FacePamphletProfile profile) {
-		// You fill this in
+		removeAll();
+		addName(profile.getName());
+		addImage(profile.getImage());
+		addStatus(profile.getStatus());
+		addFriends(profile.getFriends());
 	}
-
 	
+	private void addName(String name){
+		
+		GLabel Name = new GLabel(name);
+		Name.setFont(PROFILE_NAME_FONT);
+		Name.setColor(Color.BLUE);
+		double x = LEFT_MARGIN;
+		nameHeight = Name.getHeight();
+		double y = TOP_MARGIN + nameHeight;
+		add(Name, x, y);
+	}
+	private void addImage(GImage image) {
+		double x = LEFT_MARGIN;
+		double y = TOP_MARGIN + nameHeight + IMAGE_MARGIN; 
+		if(image != null) {
+			image.setBounds(x, y, IMAGE_WIDTH, IMAGE_HEIGHT);
+			add(image);
+		}
+		else {
+			GRect imageRect = new GRect(x, y, IMAGE_WIDTH, IMAGE_HEIGHT);
+			add(imageRect);
+			GLabel noImage = new GLabel("No Image");
+			noImage.setFont(PROFILE_IMAGE_FONT);
+			double labelWidth = x + IMAGE_WIDTH/2 - noImage.getWidth()/2;
+			double labelHeight = y + IMAGE_HEIGHT/2;
+			add(noImage, labelWidth, labelHeight);
+		}
+	}
+	
+	private void addFriends(Iterator<String>friends) {
+		GLabel Friends = new GLabel("Friends:");
+		Friends.setFont(PROFILE_FRIEND_LABEL_FONT);
+		double x = getWidth()/2;
+		double y = TOP_MARGIN + nameHeight;
+		add(Friends, x, y);
+		Iterator<String> it = friends;
+		for(int i = 1; it.hasNext(); i++) {
+			GLabel friendName = new GLabel(it.next());
+			friendName.setFont(PROFILE_FRIEND_FONT);
+			double height = y + Friends.getHeight() * i;
+			add(friendName, x, height);
+		}
+	}
 }
