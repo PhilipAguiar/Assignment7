@@ -183,7 +183,6 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 			if (!addFriendTextField.getText().isEmpty()) {
 				if (db.containsProfile(name)) {
 					if (db.containsProfile(friendName)) {
-						currentProfile = db.getProfile(name);
 						if(currentProfile.addFriend(friendName)){ 
 							db.getProfile(friendName).addFriend(name);
 							db.addProfile(currentProfile);
