@@ -105,32 +105,32 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		}
 		
 		if (e.getSource() == statusTextField) {
-			if(statusTextField.getText()== ""){		
+			if(!statusTextField.getText().isEmpty()){		
 			println(nameField.getText() + " is currently " + statusTextField.getText());}
 		}
 		
 		if (e.getSource() == statusButton) {
-			if(statusTextField.getText()== ""){
+			if(!statusTextField.getText().isEmpty()){
 			println(nameField.getText() + " is currently " + statusTextField.getText());}
 		}
 		
 		if (e.getSource() == pictureTextField) {
-			if(pictureTextField.getText()== ""){
+			if(!pictureTextField.getText().isEmpty()){
 			println(pictureTextField.getText() + " Picture added.");}
 		}
 		
 		if (e.getSource() == pictureButton) {
-			if(pictureTextField.getText()== ""){
+			if(!pictureTextField.getText().isEmpty()){
 			println(pictureTextField.getText() + " Picture added.");}
 		}
 		
 		if (e.getSource() == addFriendTextField) {
-			if(addFriendTextField.getText()== ""){
+			if(!addFriendTextField.getText().isEmpty()){
 			println(addFriendTextField+ "was added as a friend!");}
 		}
 		
 		if (e.getSource() == addFriendButton) {
-			if(addFriendTextField.getText()== ""){
+			if(!addFriendTextField.getText().isEmpty()){
 			println(addFriendTextField.getText()+ " was added as a friend!");}
 		}
 	}
