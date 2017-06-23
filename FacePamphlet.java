@@ -88,7 +88,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	 */
 	public void actionPerformed(ActionEvent e) {
 
-		String name = nameField.getText().trim();
+		String name = nameField.getText();
 		String status = statusTextField.getText();
 		String pictureText = pictureTextField.getText();
 		
@@ -100,7 +100,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				println("Add new profile: "+ profile.toString());
 			}else println("This name is already in the database!");
 			
-		}
+		}}
 		
 		if (e.getSource() == delete) {
 			if(!name.isEmpty()){
@@ -153,5 +153,5 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		
 		
-	}
+	
 }
