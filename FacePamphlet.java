@@ -26,6 +26,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	private JTextField addFriendTextField;
 	private JButton addFriendButton;
 	private FacePamphletDatabase db = new FacePamphletDatabase();
+	private FacePamphletProfile profile;
 
 	/**
 	 * This method has the responsibility for initializing the interactors in
@@ -91,7 +92,12 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		if (e.getSource() == add) {
 			if(!nameField.getText().isEmpty()){
-			println(nameField.getText());}
+			if(!db.containsProfile(nameField.getText())){
+				profile= new FacePamphletProfile(nameField.getText());
+				db.addProfile(profile);
+			}
+			println("Add new profile: "+ profile.getName());
+			}
 		}
 		
 		if (e.getSource() == delete) {
