@@ -65,9 +65,17 @@ public class FacePamphletDatabase implements FacePamphletConstants {
 	 */
 	public void deleteProfile(String name) {
 		if(this.profile.containsKey(name)){
-			 this.profile.remove(name);}
+			Iterator <String> iterator = this.profile.keySet().iterator();
+			while(iterator.hasNext()){
+				FacePamphletProfile profile;
+				String profileName = iterator.next();
+				profile = this.profile.get(profileName);
+				profile.removeFriend(name);
+				//iterator.remove;//
+			}
+			this.profile.remove(name);}
 			
-	}
+		}
 	
 	/** 
 	 * This method returns true if there is a profile in the database 
