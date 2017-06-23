@@ -149,7 +149,10 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 					GImage image = null;
 					 try {
 					 image = new GImage(pictureText);
-					 println("Trying to upload"+pictureText);
+					 if (image!=null){
+						 currentProfile.setImage(image);
+						 db.addProfile(currentProfile);
+					 println("Uploading: "+pictureText);}
 					 } catch (ErrorException ex) {
 					 println("That image cannot be uploaded");
 					 }
