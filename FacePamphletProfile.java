@@ -33,7 +33,7 @@ public class FacePamphletProfile implements FacePamphletConstants {
 	/** This method returns the name associated with the profile. */ 
 	public String getName() {
 		// You fill this in.  Currently always returns the empty string.
-		return this.name;
+		return name;
 	}
 
 	/** 
@@ -42,7 +42,7 @@ public class FacePamphletProfile implements FacePamphletConstants {
 	 * returns null. */ 
 	public GImage getImage() {
 		// You fill this in.  Currently always returns null.
-		return this.image;
+		return image;
 	}
 
 	/** This method sets the image associated with the profile. */ 
@@ -57,7 +57,7 @@ public class FacePamphletProfile implements FacePamphletConstants {
 	 */ 
 	public String getStatus() {
 		// You fill this in.  Currently always returns the empty string.
-		return this.status;
+		return status;
 	}
 	
 	/** This method sets the status associated with the profile. */ 
