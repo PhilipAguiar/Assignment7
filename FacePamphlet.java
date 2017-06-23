@@ -12,7 +12,7 @@ import acm.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class FacePamphlet extends ConsoleProgram implements FacePamphletConstants {
+public class FacePamphlet extends Program implements FacePamphletConstants {
 
 	private JTextField nameField;
 	private JButton add;
@@ -26,6 +26,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	private JButton addFriendButton;
 	private FacePamphletDatabase db = new FacePamphletDatabase();
 	private FacePamphletProfile currentProfile;
+	private FacePamphletCanvas canvas;
+
 	
 
 	/**
@@ -34,6 +36,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	 * to be performed.
 	 */
 	public void init() {
+		
+		
 
 		JLabel name = new JLabel("Name:");
 		add(name, NORTH);
@@ -79,6 +83,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 
 		addActionListeners();
 
+		canvas = new FacePamphletCanvas();
+		add(canvas);
 	}
 
 	/**
@@ -100,9 +106,11 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 					FacePamphletProfile profile = new FacePamphletProfile(name);
 					db.addProfile(profile);
 					currentProfile = profile;
-					println("Add new profile: " + profile.toString());
+					canvas.displayProfile(currentProfile);
+	    			canvas.showMessage("New profile created");
 				} else
-					println("This name is already in the database!");
+				canvas.displayProfile(currentProfile);
+    			canvas.showMessage("A profile with name " + name + " already exists.");
 
 			}
 		}
@@ -112,6 +120,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				if (db.containsProfile(name)) {
 					println(name + " was removed from the database!");
 					db.deleteProfile(name);
+					currentProfile = null;
+					
 				} else
 					println("This name is not in the database!");
 			}
