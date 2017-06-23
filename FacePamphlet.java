@@ -165,6 +165,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				else {println("There's no profile to add this picture too");
 				}
 			}
+			}
 			
 		
 		if (e.getSource() == addFriendTextField) {
