@@ -21,7 +21,9 @@ public class FacePamphletCanvas extends GCanvas implements FacePamphletConstants
 	 * display
 	 */
 	public FacePamphletCanvas() {
-		// You fill this in
+		message = new GLabel("Welcome to Face Pamphlet");
+		message.setFont(MESSAGE_FONT);
+		add(message, (getWidth() - message.getWidth() /2), (getHeight()-(BOTTOM_MESSAGE_MARGIN*2)));
 	}
 
 	/**
@@ -30,10 +32,9 @@ public class FacePamphletCanvas extends GCanvas implements FacePamphletConstants
 	 * any) is replaced by the new message text passed in.
 	 */
 	public void showMessage(String msg) {
-		message = new GLabel(msg);
-		message.setFont(MESSAGE_FONT);
-		add(message, (getWidth() - message.getWidth() /2), (getHeight()-(BOTTOM_MESSAGE_MARGIN*2)));
 		
+		message.setLabel(msg);
+		message.setLocation( (getWidth()-message.getWidth()) / 2, (getHeight()-(BOTTOM_MESSAGE_MARGIN*2)));
 
 	}
 
