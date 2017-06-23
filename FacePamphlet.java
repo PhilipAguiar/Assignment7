@@ -197,6 +197,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 			if (!addFriendTextField.getText().isEmpty()) {
 				if (db.containsProfile(name)) {
 					if (db.containsProfile(friendName)) {
+						currentProfile = db.getProfile(name);
 						if(currentProfile.addFriend(friendName)){ 
 							db.getProfile(friendName).addFriend(name);
 							db.addProfile(currentProfile);
@@ -221,6 +222,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 			if (!addFriendTextField.getText().isEmpty()) {
 				if (db.containsProfile(name)) {
 					if (db.containsProfile(friendName)) {
+						currentProfile = db.getProfile(name);
 						if(currentProfile.addFriend(friendName)){
 							db.getProfile(friendName).addFriend(name); 
 							db.addProfile(currentProfile);
