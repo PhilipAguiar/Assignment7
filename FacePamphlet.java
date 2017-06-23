@@ -135,17 +135,10 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		}
 	}
 
-	private boolean checkIfBlank(String text){
-		
-		if(text == ""){
-			return true;
-			
-		}else {
-			return false;
-		}
+	
 		
 		
 		
 		
-	}
+	
 }
