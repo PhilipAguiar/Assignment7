@@ -14,7 +14,6 @@ import javax.swing.*;
 
 public class FacePamphlet extends ConsoleProgram implements FacePamphletConstants {
 
-	
 	private JTextField nameField;
 	private JButton add;
 	private JButton delete;
@@ -91,124 +90,141 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	public void actionPerformed(ActionEvent e) {
 
 		String name = nameField.getText();
-	
+
 		String status = statusTextField.getText();
 		String pictureText = pictureTextField.getText();
 		String friendName = addFriendTextField.getText();
-		
+
 		if (e.getSource() == add) {
-			if(!name.isEmpty()){
-			if(!db.containsProfile(name)){
-				profile= new FacePamphletProfile(name);
-				db.addProfile(profile);
-				currentProfile= profile;
-				currentName= currentProfile.getName();
-				println("Add new profile: "+ profile.toString());
-			}else println("This name is already in the database!");
-			
-		}}
-		
+			if (!name.isEmpty()) {
+				if (!db.containsProfile(name)) {
+					profile = new FacePamphletProfile(name);
+					db.addProfile(profile);
+					currentProfile = profile;
+					currentName = currentProfile.getName();
+					println("Add new profile: " + profile.toString());
+				} else
+					println("This name is already in the database!");
+
+			}
+		}
+
 		if (e.getSource() == delete) {
-			if(!name.isEmpty()){
-				if(db.containsProfile(name)){
-					println(name+ " was removed from the database!");
+			if (!name.isEmpty()) {
+				if (db.containsProfile(name)) {
+					println(name + " was removed from the database!");
 					db.deleteProfile(name);
-				}else println("This name is not in the database!");}
+				} else
+					println("This name is not in the database!");
+			}
 		}
-		
+
 		if (e.getSource() == lookUp) {
-			if(!name.isEmpty()){
-				if(db.containsProfile(name)){
-				println("Looking up "+name+"'s profile");
-				}else println("This name is not in the database!");}
+			if (!name.isEmpty()) {
+				if (db.containsProfile(name)) {
+					println("Looking up " + name + "'s profile");
+				} else
+					println("This name is not in the database!");
+			}
 		}
-		
+
 		if (e.getSource() == statusTextField) {
-			if(!status.isEmpty()){		
-				if(db.containsProfile(name)){
-				currentProfile.setStatus(status);
-				db.addProfile(currentProfile);
-			println(currentName + " is currently " + status);}
-				else {println("There's no profile to add this status too");}
-		}
-			}
-		
-		if (e.getSource() == statusButton) {
-			if(!status.isEmpty()){
-				if(db.containsProfile(name)){
-				currentProfile.setStatus(status);
-				db.addProfile(currentProfile);
-			println(currentName + " is currently " + status);}
-				else {println("There's no profile to add this status too");}
-		}
-			}
-		
-		if (e.getSource() == pictureTextField) {
-			if(!pictureText.isEmpty()){
-				if(db.containsProfile(currentName)){
-					GImage image = null;
-					 try {
-					 image = new GImage(pictureText);
-					 if (image!=null){
-						 currentProfile.setImage(image);
-						 db.addProfile(currentProfile);
-					 println("Uploading: "+pictureText);}
-					 } catch (ErrorException ex) {
-					 println("That image cannot be uploaded");
-					 }
-
-				}
-				else {println("There's no profile to upload this picture too");}
-			}
-			
-		}
-		
-		if (e.getSource() == pictureButton) {
-			if(!pictureText.isEmpty()){
-				if(db.containsProfile(currentName)){
-					GImage image = null;
-					 try {
-					 image = new GImage(pictureText);
-					 if (image!=null){
-						 currentProfile.setImage(image);
-						 db.addProfile(currentProfile);
-					 println("Uploading: "+pictureText);}
-					 } catch (ErrorException ex) {
-					 println("That image cannot be uploaded");
-					 }
-
-				}
-				else {println("There's no profile to upload this picture too");}
-			}
-			}
-		
-		if (e.getSource() == addFriendTextField) {
-			if(!addFriendTextField.getText().isEmpty()){
-				if(db.containsProfile(currentName)){
-					if(db.containsProfile(friendName)){
-					currentProfile.addFriend(friendName);
-					db.getProfile(friendName).addFriend(currentName);
+			if (!status.isEmpty()) {
+				if (db.containsProfile(name)) {
+					currentProfile.setStatus(status);
 					db.addProfile(currentProfile);
-					println(friendName+ " is now your friend!");
-					}else{println("That friend isn't in our system :(");}
-				}else println("No Profile to add friend too!");}
+					println(currentName + " is currently " + status);
+				} else {
+					println("There's no profile to change the status of");
+				}
+			}
+		}
+
+		if (e.getSource() == statusButton) {
+			if (!status.isEmpty()) {
+				if (db.containsProfile(name)) {
+					currentProfile.setStatus(status);
+					db.addProfile(currentProfile);
+					println(currentName + " is currently " + status);
+				} else {
+					println("There's no profile to change the status of");
+				}
+			}
+		}
+
+		if (e.getSource() == pictureTextField) {
+			if (!pictureText.isEmpty()) {
+				if (db.containsProfile(currentName)) {
+					GImage image = null;
+					try {
+						image = new GImage(pictureText);
+						if (image != null) {
+							currentProfile.setImage(image);
+							db.addProfile(currentProfile);
+							println("Uploading: " + pictureText);
+						}
+					} catch (ErrorException ex) {
+						println("That image cannot be uploaded");
+					}
+
+				} else {
+					println("There's no profile to upload this picture too");
+				}
+			}
+
+		}
+
+		if (e.getSource() == pictureButton) {
+			if (!pictureText.isEmpty()) {
+				if (db.containsProfile(currentName)) {
+					GImage image = null;
+					try {
+						image = new GImage(pictureText);
+						if (image != null) {
+							currentProfile.setImage(image);
+							db.addProfile(currentProfile);
+							println("Uploading: " + pictureText);
+						}
+					} catch (ErrorException ex) {
+						println("That image cannot be uploaded");
+					}
+
+				} else {
+					println("There's no profile to upload this picture too");
+				}
+			}
+		}
+
+		if (e.getSource() == addFriendTextField) {
+			if (!addFriendTextField.getText().isEmpty()) {
+				if (db.containsProfile(currentName)) {
+					if (db.containsProfile(friendName)) {
+						currentProfile.addFriend(friendName);
+						db.getProfile(friendName).addFriend(currentName);
+						db.addProfile(currentProfile);
+						println(friendName + " is now your friend!");
+					} else {
+						println("That friend isn't in our system :(");
+					}
+				} else
+					println("No Profile to add friend too!");
+			}
 		}
 		if (e.getSource() == addFriendButton) {
-			if(!addFriendTextField.getText().isEmpty()){
-				if(db.containsProfile(currentName)){
-					if(db.containsProfile(friendName)){
-					currentProfile.addFriend(friendName);
-					db.addProfile(currentProfile);
-					println(friendName+ " is now your friend!");
+			if (!addFriendTextField.getText().isEmpty()) {
+				if (db.containsProfile(currentName)) {
+					if (db.containsProfile(friendName)) {
+						currentProfile.addFriend(friendName);
+						db.getProfile(friendName).addFriend(currentName);
+						db.addProfile(currentProfile);
+						println(friendName + " is now your friend!");
+					} else {
+						println("That friend isn't in our system :(");
 					}
-					else{println("That friend isn't in our system :(");}
-				}else println("No Profile to add friend too!");}
+				} else
+					println("No Profile to add friend too!");
+			}
 		}
 
-	
-		
-		
-		
-		
 	}
 }
