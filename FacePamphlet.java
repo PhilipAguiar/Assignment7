@@ -102,14 +102,14 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 				if (!db.containsProfile(name)) {
 					FacePamphletProfile profile = new FacePamphletProfile(name);
 					db.addProfile(profile);
-					currentProfile =db.getProfile(name);
+					currentProfile =profile;
 					canvas.displayProfile(currentProfile);
 					canvas.showMessage("Added new profile: " + currentProfile.getName());
-				} else
-					currentProfile=db.getProfile(name);
+				} else{
+					FacePamphletProfile existingProfile = db.getProfile(name)
 					canvas.displayProfile(currentProfile);
 					canvas.showMessage("This name is already in the database!");
-
+				}
 			}
 		}
 
