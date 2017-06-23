@@ -124,17 +124,21 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		if (e.getSource() == statusTextField) {
 			if(!status.isEmpty()){		
+				if(db.containsProfile(name)){
 				currentProfile.setStatus(status);
 				db.addProfile(currentProfile);
 			println(currentName + " is currently " + status);}
 		}
+			}
 		
 		if (e.getSource() == statusButton) {
 			if(!status.isEmpty()){
+				if(db.containsProfile(name)){
 				currentProfile.setStatus(status);
 				db.addProfile(currentProfile);
 			println(name + " is currently " + status);}
 		}
+			}
 		
 		if (e.getSource() == pictureTextField) {
 			if(!pictureText.isEmpty()){
@@ -152,13 +156,16 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		if (e.getSource() == pictureButton) {
 			if(!pictureText.isEmpty()){
-				
+				if(db.containsProfile(name)){
 				this.image = new GImage(pictureText,LEFT_MARGIN,TOP_MARGIN+IMAGE_MARGIN);
 				this.image.setSize(IMAGE_WIDTH,IMAGE_HEIGHT);
 				currentProfile.setImage(this.image);
 				db.addProfile(currentProfile);
 			println(pictureText + " Picture added.");}
-		}
+				else {println("There's no profile to add this picture too");
+				}
+			}
+			
 		
 		if (e.getSource() == addFriendTextField) {
 			if(!addFriendTextField.getText().isEmpty()){
