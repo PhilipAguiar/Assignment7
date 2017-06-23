@@ -25,8 +25,10 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	private JButton pictureButton;
 	private JTextField addFriendTextField;
 	private JButton addFriendButton;
+	private GImage image;
 	private FacePamphletDatabase db = new FacePamphletDatabase();
 	private FacePamphletProfile profile;
+	private FacePamphletProfile currentProfile;
 
 	/**
 	 * This method has the responsibility for initializing the interactors in
@@ -89,14 +91,17 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	public void actionPerformed(ActionEvent e) {
 
 		String name = nameField.getText();
+		String currentName = currentProfile.getName();
 		String status = statusTextField.getText();
 		String pictureText = pictureTextField.getText();
+		String friendName = addFriendTextField.getText();
 		
 		if (e.getSource() == add) {
 			if(!name.isEmpty()){
 			if(!db.containsProfile(name)){
 				profile= new FacePamphletProfile(name);
 				db.addProfile(profile);
+				currentProfile= profile;
 				println("Add new profile: "+ profile.toString());
 			}else println("This name is already in the database!");
 			
@@ -119,32 +124,54 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		if (e.getSource() == statusTextField) {
 			if(!status.isEmpty()){		
-			println(name + " is currently " + status);}
+				currentProfile.setStatus(status);
+				db.addProfile(currentProfile);
+			println(currentName + " is currently " + status);}
 		}
 		
 		if (e.getSource() == statusButton) {
 			if(!status.isEmpty()){
+				currentProfile.setStatus(status);
+				db.addProfile(currentProfile);
 			println(name + " is currently " + status);}
 		}
 		
 		if (e.getSource() == pictureTextField) {
 			if(!pictureText.isEmpty()){
+				if(db.containsProfile(name)){
+				this.image = new GImage(pictureText,LEFT_MARGIN,TOP_MARGIN+IMAGE_MARGIN);
+				this.image.setSize(IMAGE_WIDTH,IMAGE_HEIGHT);
+				currentProfile.setImage(this.image);
+				db.addProfile(currentProfile);
 			println(pictureText + " Picture added.");}
+				else {println("There's no profile to add this picture too");}
+			}
+			
 		}
 		
 		if (e.getSource() == pictureButton) {
 			if(!pictureText.isEmpty()){
+				
+				this.image = new GImage(pictureText,LEFT_MARGIN,TOP_MARGIN+IMAGE_MARGIN);
+				this.image.setSize(IMAGE_WIDTH,IMAGE_HEIGHT);
+				currentProfile.setImage(this.image);
+				db.addProfile(currentProfile);
 			println(pictureText + " Picture added.");}
 		}
 		
 		if (e.getSource() == addFriendTextField) {
 			if(!addFriendTextField.getText().isEmpty()){
-			println(addFriendTextField+ "was added as a friend!");}
+				if(db.containsProfile(friendName)){
+					
+					
+					println(friendName+ " is now your friend!");
+				}else println("You're already friends with this person!");}
 		}
 		
 		if (e.getSource() == addFriendButton) {
-			if(!addFriendTextField.getText().isEmpty()){
-			println(addFriendTextField.getText()+ " was added as a friend!");}
+			if(db.containsProfile(friendName)){
+				println(friendName+ " is now your friend!");
+			}else println("You're already friends with this person!");}
 		}
 	}
 
