@@ -89,6 +89,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	public void actionPerformed(ActionEvent e) {
 
 		String name = nameField.getText();
+		String status = statusTextField.getText();
+		String pictureText = pictureTextField.getText();
 		
 		if (e.getSource() == add) {
 			if(!name.isEmpty()){
@@ -111,28 +113,28 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		if (e.getSource() == lookUp) {
 			if(!name.isEmpty()){
 				if(db.containsProfile(name)){
-				println(name);
+				println("Looking up "+name+"'s profile");
 				}else println("This name is already in the database!");}
 		}
 		
 		if (e.getSource() == statusTextField) {
-			if(!statusTextField.getText().isEmpty()){		
-			println(name + " is currently " + statusTextField.getText());}
+			if(!status.isEmpty()){		
+			println(name + " is currently " + status);}
 		}
 		
 		if (e.getSource() == statusButton) {
-			if(!statusTextField.getText().isEmpty()){
-			println(name + " is currently " + statusTextField.getText());}
+			if(!status.isEmpty()){
+			println(name + " is currently " + status);}
 		}
 		
 		if (e.getSource() == pictureTextField) {
-			if(!pictureTextField.getText().isEmpty()){
-			println(pictureTextField.getText() + " Picture added.");}
+			if(!pictureText.isEmpty()){
+			println(pictureText + " Picture added.");}
 		}
 		
 		if (e.getSource() == pictureButton) {
-			if(!pictureTextField.getText().isEmpty()){
-			println(pictureTextField.getText() + " Picture added.");}
+			if(!pictureText.isEmpty()){
+			println(pictureText + " Picture added.");}
 		}
 		
 		if (e.getSource() == addFriendTextField) {
