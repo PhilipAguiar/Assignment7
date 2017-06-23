@@ -81,7 +81,6 @@ public class FacePamphletCanvas extends GCanvas implements FacePamphletConstants
 					status.setFont(PROFILE_STATUS_FONT);
 					add(status, LEFT_MARGIN, TOP_MARGIN + IMAGE_HEIGHT + STATUS_MARGIN + status.getAscent());
 				
-				
 				//Displays friends
 				GLabel friendsLabel = new GLabel("Friends: ", getWidth()/2, TOP_MARGIN+IMAGE_MARGIN);
 				friendsLabel.setFont(PROFILE_FRIEND_LABEL_FONT);
