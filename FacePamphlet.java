@@ -88,7 +88,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	 */
 	public void actionPerformed(ActionEvent e) {
 
-		String name = nameField.getText();
+		String name = nameField.getText().trim();
 		String status = statusTextField.getText();
 		String pictureText = pictureTextField.getText();
 		
