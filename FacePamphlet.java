@@ -107,7 +107,7 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					FacePamphletProfile profile = new FacePamphletProfile(name);
 					db.addProfile(profile);
 					currentProfile = profile;
-					canvas.showMessage("Add new profile: " + profile.toString());
+					canvas.showMessage("Added new profile: " + currentProfile.getName());
 				} else
 					canvas.showMessage("This name is already in the database!");
 
@@ -117,12 +117,13 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 		if (e.getSource() == delete) {
 			if (!name.isEmpty()) {
 				if (db.containsProfile(name)) {
-					println(name + " was removed from the database!");
+					currentProfile=db.getProfile(name);
+					canvas.showMessage(name + " was removed from the database!");
 					db.deleteProfile(name);
 					currentProfile = null;
 					
 				} else
-					println("This name is not in the database!");
+					canvas.showMessage("This name is not in the database!");
 			}
 		}
 
@@ -130,20 +131,21 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 			if (!name.isEmpty()) {
 				if (db.containsProfile(name)) {
 					currentProfile=db.getProfile(name);
-					println(currentProfile.toString());
+					canvas.showMessage(currentProfile.toString());
 				} else
-					println("This name is not in the database!");
+					canvas.showMessage("This name is not in the database!");
 			}
 		}
 
 		if (e.getSource() == statusTextField|| e.getSource() == statusButton) {
 			if (!status.isEmpty()) {
 				if (db.containsProfile(name)) {
+					currentProfile=db.getProfile(name);
 					currentProfile.setStatus(status);
 					db.addProfile(currentProfile);
-					println(name + " is currently " + status);
+					canvas.showMessage(name + " is currently " + status);
 				} else {
-					println("There's no profile to change the status of");
+					canvas.showMessage("There's no profile to change the status of");
 				}
 			}
 		}
@@ -159,14 +161,14 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 						if (image != null) {
 							currentProfile.setImage(image);
 							db.addProfile(currentProfile);
-							println("Uploading: " + pictureText);
+							canvas.showMessage("Uploading: " + pictureText);
 						}
 					} catch (ErrorException ex) {
-						println("That image cannot be uploaded");
+						canvas.showMessage("That image cannot be uploaded");
 					}
 
 				} else {
-					println("There's no profile to upload this picture too");
+					canvas.showMessage("There's no profile to upload this picture too");
 				}
 			}
 
@@ -184,18 +186,18 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 							db.getProfile(friendName).addFriend(name);
 							db.addProfile(currentProfile);
 							
-							println(friendName + " is now your friend!");
+							canvas.showMessage(friendName + " is now your friend!");
 							
 						}else{
-							println(friendName+ " is already your friend!");
+							canvas.showMessage(friendName+ " is already your friend!");
 						}
 						
 					}else{
-						println("That friend isnt in our system :(");}
+						canvas.showMessage("That friend isnt in our system :(");}
 					}
 						
 				} else {
-					println("That profile isn't in our system :(");
+					canvas.showMessage("That profile isn't in our system :(");
 
 					} 
 		}
