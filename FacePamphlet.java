@@ -199,7 +199,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 					currentProfile.addFriend(friendName);
 					db.addProfile(currentProfile);
 					println(friendName+ " is now your friend!");
-					}else{println("That friend isn't in our system :(");}
+					}
+					else{println("That friend isn't in our system :(");}
 				}else println("No Profile to add friend too!");}
 		}
 
@@ -208,5 +209,5 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		
 		
-	
+	}
 }
