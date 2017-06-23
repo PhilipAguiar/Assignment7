@@ -25,9 +25,8 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 	private JTextField addFriendTextField;
 	private JButton addFriendButton;
 	private FacePamphletDatabase db = new FacePamphletDatabase();
-	private FacePamphletProfile profile;
 	private FacePamphletProfile currentProfile;
-	private String currentName = "";
+	
 
 	/**
 	 * This method has the responsibility for initializing the interactors in
@@ -98,10 +97,9 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		if (e.getSource() == add) {
 			if (!name.isEmpty()) {
 				if (!db.containsProfile(name)) {
-					profile = new FacePamphletProfile(name);
+					FacePamphletProfile profile = new FacePamphletProfile(name);
 					db.addProfile(profile);
 					currentProfile = profile;
-					currentName = currentProfile.getName();
 					println("Add new profile: " + profile.toString());
 				} else
 					println("This name is already in the database!");
@@ -133,7 +131,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				if (db.containsProfile(name)) {
 					currentProfile.setStatus(status);
 					db.addProfile(currentProfile);
-					println(currentName + " is currently " + status);
+					println(name + " is currently " + status);
 				} else {
 					println("There's no profile to change the status of");
 				}
@@ -145,7 +143,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 				if (db.containsProfile(name)) {
 					currentProfile.setStatus(status);
 					db.addProfile(currentProfile);
-					println(currentName + " is currently " + status);
+					println(name + " is currently " + status);
 				} else {
 					println("There's no profile to change the status of");
 				}
@@ -154,7 +152,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 
 		if (e.getSource() == pictureTextField) {
 			if (!pictureText.isEmpty()) {
-				if (db.containsProfile(currentName)) {
+				if (db.containsProfile(name)) {
 					GImage image = null;
 					try {
 						image = new GImage(pictureText);
@@ -176,7 +174,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 
 		if (e.getSource() == pictureButton) {
 			if (!pictureText.isEmpty()) {
-				if (db.containsProfile(currentName)) {
+				if (db.containsProfile(name)) {
 					GImage image = null;
 					try {
 						image = new GImage(pictureText);
