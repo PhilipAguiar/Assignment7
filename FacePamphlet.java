@@ -26,7 +26,7 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 	private JButton addFriendButton;
 	private FacePamphletDatabase db = new FacePamphletDatabase();
 	private FacePamphletProfile currentProfile;
-	private FacePamphletCanvas canvas;
+	private FacePamphletCanvas canvas= new FacePamphletCanvas();;
 
 	
 
@@ -37,10 +37,6 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 	 */
 	public void init() {
 		
-		canvas = new FacePamphletCanvas();
-		
-
-
 		JLabel name = new JLabel("Name:");
 		add(name, NORTH);
 
@@ -107,8 +103,10 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					FacePamphletProfile profile = new FacePamphletProfile(name);
 					db.addProfile(profile);
 					currentProfile = profile;
+					canvas.displayProfile(currentProfile);
 					canvas.showMessage("Added new profile: " + currentProfile.getName());
 				} else
+					canvas.displayProfile(currentProfile);
 					canvas.showMessage("This name is already in the database!");
 
 			}
@@ -131,6 +129,7 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 			if (!name.isEmpty()) {
 				if (db.containsProfile(name)) {
 					currentProfile=db.getProfile(name);
+					canvas.displayProfile(currentProfile);
 					canvas.showMessage(currentProfile.toString());
 				} else
 					canvas.showMessage("This name is not in the database!");
@@ -146,6 +145,7 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					canvas.showMessage(name + " is currently " + status);
 				} else {
 					canvas.showMessage("There's no profile to change the status of");
+					currentProfile=null;
 				}
 			}
 		}
@@ -166,7 +166,7 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 					} catch (ErrorException ex) {
 						canvas.showMessage("That image cannot be uploaded");
 					}
-
+					canvas.displayProfile(currentProfile);
 				} else {
 					canvas.showMessage("There's no profile to upload this picture too");
 				}
@@ -185,7 +185,7 @@ public class FacePamphlet extends Program implements FacePamphletConstants {
 						if(currentProfile.addFriend(friendName)){ 
 							db.getProfile(friendName).addFriend(name);
 							db.addProfile(currentProfile);
-							
+							canvas.displayProfile(currentProfile);
 							canvas.showMessage(friendName + " is now your friend!");
 							
 						}else{
