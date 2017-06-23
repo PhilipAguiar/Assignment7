@@ -184,23 +184,27 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		
 		if (e.getSource() == addFriendTextField) {
 			if(!addFriendTextField.getText().isEmpty()){
-				if(db.containsProfile(friendName)){
+				if(db.containsProfile(currentName)){
+					if(db.containsProfile(friendName)){
 					currentProfile.addFriend(friendName);
-					
-					
+					db.addProfile(currentProfile);
 					println(friendName+ " is now your friend!");
+					}else{
+					
+					println(friendName+ " is not in the system");}
 				}else println("You're already friends with this person!");}
 		}
 		
-		if (e.getSource() == addFriendButton) {
-			if(!addFriendTextField.getText().isEmpty()){
+		if(!addFriendTextField.getText().isEmpty()){
+			if(db.containsProfile(currentName)){
 				if(db.containsProfile(friendName)){
-					currentProfile.addFriend(friendName);
-					
-					
-					println(friendName+ " is now your friend!");
-				}else println("You're already friends with this person!");}
-		}
+				currentProfile.addFriend(friendName);
+				db.addProfile(currentProfile);
+				println(friendName+ " is now your friend!");
+				}else{
+				
+				println(friendName+ " is not in the system");}
+			}else println("You're already friends with this person!");}
 	}
 
 	
