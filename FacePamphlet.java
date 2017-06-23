@@ -199,20 +199,19 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 			if (!addFriendTextField.getText().isEmpty()) {
 				if (db.containsProfile(currentName)) {
 					if (db.containsProfile(friendName)) {
-						while(currentProfile.getFriends().hasNext()){
-							if(currentProfile.getFriends().next() == friendName ){
+						while (currentProfile.getFriends().hasNext()) {
+							if (currentProfile.getFriends().next() == friendName) {
 								println("You are already friends with this person!");
-							}else{
+							} else {
 								currentProfile.addFriend(friendName);
 								db.getProfile(friendName).addFriend(currentName);
 								db.addProfile(currentProfile);
 								println(friendName + " is now your friend!");
-								
+
 							}
-							
-							
+
 						}
-						
+
 					} else {
 						println("That friend isn't in our system :(");
 					}
@@ -224,20 +223,26 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 			if (!addFriendTextField.getText().isEmpty()) {
 				if (db.containsProfile(currentName)) {
 					if (db.containsProfile(friendName)) {
-						while(currentProfile.getFriends().hasNext()){
-							if(currentProfile.getFriends().next() == friendName ){
-								println("You are already friends with this person!");
-							}else{
-								currentProfile.addFriend(friendName);
-								db.getProfile(friendName).addFriend(currentName);
-								db.addProfile(currentProfile);
-								println(friendName + " is now your friend!");
-								
+						if (currentProfile.getFriends().hasNext()) {
+							while (currentProfile.getFriends().hasNext()) {
+								if (currentProfile.getFriends().next() == friendName) {
+									println("You are already friends with this person!");
+								} else {
+									currentProfile.addFriend(friendName);
+									db.getProfile(friendName).addFriend(currentName);
+									db.addProfile(currentProfile);
+									println(friendName + " is now your friend!");
+
+								}
 							}
-							
-							
+
+						}else{
+							currentProfile.addFriend(friendName);
+							db.getProfile(friendName).addFriend(currentName);
+							db.addProfile(currentProfile);
+							println(friendName + " is now your friend!");
 						}
-						
+
 					} else {
 						println("That friend isn't in our system :(");
 					}
