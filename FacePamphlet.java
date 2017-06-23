@@ -105,7 +105,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 		if (e.getSource() == delete) {
 			if(!name.isEmpty()){
 				if(db.containsProfile(name)){
-					println(name+ "was removed from the database!");
+					println(name+ " was removed from the database!");
 					db.deleteProfile(name);
 				}else println("This name is not in the database!");}
 		}
@@ -114,7 +114,7 @@ public class FacePamphlet extends ConsoleProgram implements FacePamphletConstant
 			if(!name.isEmpty()){
 				if(db.containsProfile(name)){
 				println("Looking up "+name+"'s profile");
-				}else println("This name is already in the database!");}
+				}else println("This name is not in the database!");}
 		}
 		
 		if (e.getSource() == statusTextField) {
